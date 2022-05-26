@@ -2,20 +2,40 @@ import streamlit as st
 import pandas as pd
 import seaborn as sb
 import matplotlib.pyplot as plt
+from datetime import datetime, date
+
+############### 그래프에서 한국어 인식 ###############
+import platform
+
+from matplotlib import font_manager, rc
+plt.rcParams['axes.unicode_minus'] = False
+
+if platform.system() == 'Darwin':
+    rc('font', family='AppleGothic')
+elif platform.system() == 'Windows':
+    path = "c:/Windows/Fonts/malgun.ttf"
+    font_name = font_manager.FontProperties(fname=path).get_name()
+    rc('font', family=font_name)
+else:
+    print('Unknown system')
+############### 그래프에서 한국어 인식 ###############
 
 def run_eda():
     st.subheader('EDA: 데이터 분석')
 
-    st.text('기상통계와 교통통계를 확인할 수 있습니다.')
+    st.text('기상통계와 교통통계를 확인할 수 있습니다. (2020년까지 5년간)')
     st.text("")
+
+    ### 데이터 삽입 ###
     df = pd.read_csv('data/car_accident.csv',index_col=0)
+
 
     # 라디오 버튼을 이용하여 데이터프레임과 통계치를 선택래서 볼수있게 한다.
     if st.checkbox('사용된 데이터프레임 확인'):
         st.text('')
 
         radio_menu = ['데이터프레임','통계치']
-        selected = st.radio('보고 싶은 데이터프레임을 선택하세요', radio_menu)
+        selected = st.radio('보고 싶은 데이터프레임을 선택하세요.', radio_menu)
 
         if selected == radio_menu[0]:
             st.dataframe(df)
@@ -23,52 +43,54 @@ def run_eda():
         if selected == radio_menu[1]:
             st.dataframe(df.describe())
 
-    # 컬럼명을 보여주고 컬럼을 선택하면
-    # 해당컬럼의 최대값 데이터와 최소값 데이터를 보여준다.
 
-    col_list = df.columns[4:]
-
-    selected_column = st.selectbox('최대값과 최소값을 보기 원하는 컬럼을 선택하세요',col_list)
-
-    df_max = df.loc[df[selected_column] == df[selected_column].max(),]
-    df_min = df.loc[df[selected_column] == df[selected_column].min(),]
-
-    st.text('{} 컬럼의 최대값입니다'.format(selected_column))
-    st.dataframe(df_max)
-
-    st.text('{} 컬럼의 최소값입니다'.format(selected_column))
-    st.dataframe(df_min)
+    col_list = df.columns[2:]
 
 
     # 유저가 선택한 컬럼들만 pairplot그리고 그다음에 상관계수를 보여준다.
-    selected_list = st.multiselect('상관관계를 보기 원하는 컬럼을 선택하세요',col_list)
-
-    if len(selected_list) > 1:
-
+    if st.checkbox('상관관계 확인'):
+        st.text('')
+        selected_list = st.multiselect('상관관계를 보기 원하면 하나 이상의 컬럼을 선택하세요',col_list)
+        st.text('')
         df_choice = df[selected_list]
+        radio_corr = ['그래프','표','히트맵']
+        if len(selected_list) > 1:
+            select_corr = st.radio('상관계수를 표시할 방법을 선택하세요.',radio_corr)
+            st.text('')
 
-        fig = sb.pairplot(data = df[selected_list])
-        st.pyplot(fig)
+            if select_corr == radio_corr[0]:
 
-        st.text('선택하신 컬럼들의 상관계수입니다.')
-        st.dataframe(df_choice.corr())
+                st.text('선택한 컬럼들의 상관계수입니다.')
+                fig = sb.pairplot(data = df[selected_list])
+                st.pyplot(fig)
 
-        fig2 = plt.figure()
-        sb.heatmap(data= df[selected_list].corr(),annot=True,fmt='.2f', vmin=-1, vmax=1, cmap='coolwarm',linewidths= 0.5)
-        st.pyplot(fig2)
+            if select_corr == radio_corr[1]:
 
-    # 고객이름 컬럼을 검색할수 있게 만듭니다
-    # 검색한 글자가 포함된 이름을 가져올수있도록
+                st.text('선택한 컬럼들의 상관계수입니다.')
+                st.dataframe(df_choice.corr())
+            
+            if select_corr == radio_corr[2]:
+
+                st.text('선택한 컬럼들의 상관계수입니다.')
+                fig2 = plt.figure()
+                sb.heatmap(data= df[selected_list].corr(),annot=True,fmt='.2f', vmin=-1, vmax=1, cmap='coolwarm',linewidths= 0.5)
+                st.pyplot(fig2)
+
 
     # 유저한테 검색어를 입력 받는다.
-    get_date = st.text_input('날짜를 검색할수 있습니다. (YYYY-MM-01)')
-    get_region = st.text_input('지역을 검색할수 있습니다. (예: 경남)')
+    region_list = ['전체','강원' , '경기' , '경남' , '경북' , '광주' , '대구' , '대전' , '부산' , '서울' , '울산' , '인천' , '전남' , '전북' , '제주' , '충남' , '충북']
+    get_region = st.selectbox('지역을 선택할수 있습니다.',region_list)
+    year_list = ['전체','2020','2019','2018','2017','2016']
+    get_year = st.selectbox('해당 연도의 데이터를 검색할수 있습니다.',year_list)
 
-    # 검색어를 고객이름 컬럼에 들어있는 데이터 가져온다
+    # 컬럼에 들어있는 데이터 가져온다
 
-    result = df.loc[(df['date'].str.contains(get_date))&(df['시도별'].str.contains(get_region)),]
+    if get_region and get_year == '전체':
+        st.dataframe(df.sort_values('date'))
+    elif get_year == '전체':
+        st.dataframe(df.loc[df['시도별'].str.contains(get_region),])
+    elif get_region == '전체':
+        st.dataframe(df.loc[df['date'].str.contains(get_year),])
+    else:
+        st.dataframe(df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),])
 
-    if len(get_date) != 0:
-        st.dataframe(result)
-
-    # 화면에 보여준다.
