@@ -21,7 +21,7 @@ def main():
     elif menu == 'EDA':
         run_eda()
     elif menu == 'ML':
-        pass # run_ml()
+        run_ml()
 
 
 if __name__ == '__main__':

@@ -15,37 +15,32 @@ def run_ml():
 
 
 # 사용자가 데이터 입력
-# 얼마정도의 차를 구매할수 있는지?
-# 여자, 나이 38, 연봉 78000, 카드빛 15000 자산 480000
 
-# 성별, 나이 , 연봉, 카드빛, 자산
+# 풍속, 기온 , 강수량, 습도
 
-    gender = st.radio('성별을 고르세요', ['남자','여자'])
-    if gender == '여자':
-        gender = 0
-    else:
-        gender = 1
-    age = st.number_input('나이를 입력하세요',0,120)
-    salary = st.number_input('연봉을 입력하세요',0)
-    debt = st.number_input('카드 빛을 입력하세요',0)
-    asset = st.number_input('자산을 입력하세요',0)
+    windspeed = st.number_input('풍속을 입력하세요(m/s)',0,120)
+    temperature = st.number_input('온도를 입력하세요(℃)',0,70)
+    precipitation = st.number_input('강수량을 입력하세요(mm)',0,3000)
+    humidity = st.number_input('습도를 입력하세요(%)',0,100)
 
-    if st.button('자동차 구매 금액 예측'): 
+    if st.button('사고율 예측'): 
 
 
         # 1. 신규고객의 정보를 넘파이 어레이로 만들어준다.
-        new_data = np.array([gender, age, salary, debt, asset])
+        new_data = np.array([windspeed, temperature, precipitation, humidity])
 
         # 2. 학습할때 사용한 X의 피텨스케일링을 이용해서 피처스케일링 한다.
         # 먼저 데이터를 2차원으로 만든다. 
-        new_data = new_data.reshape(1,5)
+        new_data = new_data.reshape(1,4)
         new_data = scaler_X.transform(new_data)
 
         # 3. 인공지능에게 예측해달라고 한다.
-        y_pred = regressor.predict(new_data)
+        new_pred = regressor.predict(new_data)
+
+        new_pred = new_pred.reshape(1,1)
 
         # 4. 예측한값을 원상복구한다.
-        y_pred = scaler_y.inverse_transform(y_pred)
+        y_pred = scaler_y.inverse_transform(new_pred)
 
-        st.write('이 사람의 구매 가능 금액은 '+ str(round(y_pred[0,0])) +'달러 입니다.')
+        st.error('해당지역의 사고율은 '+ str(round(y_pred[0,0])) +'% 입니다.')
 

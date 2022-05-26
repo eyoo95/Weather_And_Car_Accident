@@ -46,11 +46,13 @@ def run_eda():
                 st.text('선택한 컬럼들의 상관계수입니다.')
                 fig = sb.pairplot(data = df[selected_list])
                 st.pyplot(fig)
+                st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
 
             if select_corr == radio_corr[1]:
 
                 st.text('선택한 컬럼들의 상관계수입니다.')
                 st.dataframe(df_choice.corr())
+                st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
             
             if select_corr == radio_corr[2]:
 
@@ -58,6 +60,7 @@ def run_eda():
                 fig2 = plt.figure()
                 sb.heatmap(data= df[selected_list].corr(),annot=True,fmt='.2f', vmin=-1, vmax=1, cmap='coolwarm',linewidths= 0.5)
                 st.pyplot(fig2)
+                st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
 
 
 
@@ -84,4 +87,11 @@ def run_eda():
                 data_for_chart = st.dataframe(df.loc[df['시도별'].str.contains(get_region),])
             else:
                 data_for_chart = st.dataframe(df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),])
+
+            if st.button('차트확인'):
+                pass
+
+
+        if selected == radio_menu[1]:
+            st.dataframe(df.describe())
 
