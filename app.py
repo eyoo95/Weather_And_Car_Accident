@@ -3,7 +3,6 @@ from streamlit_option_menu import option_menu
 from app_home import run_home
 from app_eda import run_eda
 from app_ml import run_ml
-from PIL import Image
 
 def main():
     st.title('기상정보를 통한 교통사고율 예측 앱')

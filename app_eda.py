@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import seaborn as sb
 import matplotlib.pyplot as plt
-from datetime import datetime, date
 
 ############### 그래프에서 한국어 인식 ###############
 import platform
@@ -27,7 +26,7 @@ def run_eda():
     st.text("")
 
     ### 데이터 삽입 ###
-    df = pd.read_csv('data/car_accident_2020.csv',index_col=0)
+    df = pd.read_csv('data/car_accident_2016_2020.csv',index_col=0)
 
      # 유저가 선택한 컬럼들만 pairplot그리고 그다음에 상관계수를 보여준다.
     col_list = df.columns[2:]
@@ -78,68 +77,102 @@ def run_eda():
             year_list = ['전체','2020','2019','2018','2017','2016']
             get_year = st.selectbox('해당 연도의 데이터를 검색합니다.',year_list)
 
-
+            # 전체 지역, 전체 연도
             if get_region == '전체' and get_year == '전체':
                 st.dataframe(df.sort_values(['date','시도별']))
                 selected_list_for_chart = st.selectbox('차트를 생성하기 원하면 컬럼을 선택하세요',col_list)
-                if len(selected_list_for_chart) != 0:
-
+                if selected_list_for_chart in col_list[4:9]:
                     if st.button('차트확인'):
-                        st.info('{}년도 {}지역의 {} 변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        st.info('{}년도 {}지역 {}의 합을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
                         fig = plt.figure()
-                        x = df.sort_values(['date','시도별']).groupby('date')[[selected_list_for_chart]].mean().index
-                        y = df.sort_values(['date','시도별']).groupby('date')[[selected_list_for_chart]].mean()
-                        plt.xlabel('date')
+                        x = df.groupby('date')[[selected_list_for_chart]].sum().index
+                        y = df.groupby('date')[[selected_list_for_chart]].sum()
+                        plt.xlabel('Date')
                         plt.ylabel(selected_list_for_chart)
                         plt.xticks(rotation = 45, fontsize=4 )
                         plt.plot(x,y)
                         st.pyplot(fig)
+
+                else:
+                    ########################
+                    if st.button('차트확인'):
+                        st.info('{}년도 {}지역 {}의 평균변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        fig = plt.figure()
+                        x = df.groupby('date')[[selected_list_for_chart]].mean().index
+                        y = df.groupby('date')[[selected_list_for_chart]].mean()
+                        plt.xlabel('Date')
+                        plt.ylabel(selected_list_for_chart)
+                        plt.xticks(rotation = 45, fontsize=4 )
+                        plt.plot(x,y)
+                        st.pyplot(fig)
+                    ########################
+
+            # 전체 지역, 특정 연도            
             elif get_region == region_list[0]:
                 st.dataframe(df.loc[df['date'].str.contains(get_year),])
                 selected_list_for_chart = st.selectbox('차트를 생성하기 원하면 컬럼을 선택하세요',col_list)
-                if len(selected_list_for_chart) != 0:
-
+                if selected_list_for_chart in col_list[4:9]:
                     if st.button('차트확인'):
-                        st.info('{}년도 {}지역의 {} 변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        st.info('{}년도 {}지역 {}의 합을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
                         fig = plt.figure()
-                        x = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean().index
-                        y = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean()
-                        plt.xlabel('date')
+                        x = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].sum().index
+                        y = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].sum()
+                        plt.xlabel('Date')
                         plt.ylabel(selected_list_for_chart)
                         plt.xticks(rotation = 45 )
                         plt.plot(x,y)
                         st.pyplot(fig)
+
+                else:
+                    ########################
+                    if st.button('차트확인'):
+                        st.info('{}년도 {}지역 {}의 평균변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        fig = plt.figure()
+                        x = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean().index
+                        y = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean()
+                        plt.xlabel('Date')
+                        plt.ylabel(selected_list_for_chart)
+                        plt.xticks(rotation = 45 )
+                        plt.plot(x,y)
+                        st.pyplot(fig)
+                    ########################
+
+            # 특정 지역, 전체 연도  
             elif get_year == year_list[0]:
                 st.dataframe(df.loc[df['시도별'].str.contains(get_region),])
                 selected_list_for_chart = st.selectbox('차트를 생성하기 원하면 컬럼을 선택하세요',col_list)
                 if len(selected_list_for_chart) != 0:
-
+                # if selected_list_for_chart in col_list[4:9]:
                     if st.button('차트확인'):
-                        st.info('{}년도 {}지역의 {} 변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        st.info('{}년도 {}지역 {}의 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
                         fig = plt.figure()
-                        x = df.loc[df['시도별'].str.contains(get_region),].groupby('date')[[selected_list_for_chart]].mean().index
-                        y = df.loc[df['시도별'].str.contains(get_region),].groupby('date')[[selected_list_for_chart]].mean()
-                        plt.xlabel('date')
+                        x = df.loc[df['시도별'].str.contains(get_region),]['date']
+                        y = df.loc[df['시도별'].str.contains(get_region),][selected_list_for_chart]
+                        plt.xlabel('Date')
                         plt.ylabel(selected_list_for_chart)
                         plt.xticks(rotation = 45, fontsize=4)
                         plt.plot(x,y)
                         st.pyplot(fig)
+
+
+            # 특정 지역, 특정 연도  
             else:
                 st.dataframe(df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),])
                 selected_list_for_chart = st.selectbox('차트를 생성하기 원하면 컬럼을 선택하세요',col_list)
                 if len(selected_list_for_chart) != 0:
 
+                    ########################
                     if st.button('차트확인'):
-                        st.info('{}년도 {}지역의 {} 변화량을 나타낸 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
+                        st.info('{}년도 {}지역 {}의 차트입니다.'.format(get_year,get_region,selected_list_for_chart))
                         fig = plt.figure()
-                        x = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),].groupby('date')[[selected_list_for_chart]].mean().index
-                        y = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),].groupby('date')[[selected_list_for_chart]].mean()
-                        plt.xlabel('date')
+                        x = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),]['date']
+                        y = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),][selected_list_for_chart]
+                        plt.xlabel('Date')
                         plt.ylabel(selected_list_for_chart)
                         plt.xticks(rotation = 45 )
                         plt.plot(x,y)
                         st.pyplot(fig)
-
+                    ########################
 
             ##### streamlit의 group_by 오류
             # selected_list_for_chart = st.selectbox('차트를 생성하기 원하면 컬럼을 선택하세요',col_list)
