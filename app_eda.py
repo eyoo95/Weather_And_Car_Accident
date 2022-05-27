@@ -16,7 +16,7 @@ elif platform.system() == 'Windows':
     font_name = font_manager.FontProperties(fname=path).get_name()
     rc('font', family=font_name)
 elif platform.system() == 'Linux':
-    rc('font', family='AppleGothic')    
+    rc('font', family='NanumGothic')    
 else:
     print('Unknown system')
 ############### 그래프에서 한국어 인식 ###############
