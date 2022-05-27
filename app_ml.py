@@ -44,4 +44,5 @@ def run_ml():
         y_pred = scaler_y.inverse_transform(new_pred)
 
         st.error('해당지역의 사고율은 '+ str(round(y_pred[0,0])) +'% 입니다.')
+        st.text("'교통사고는 기상상황 외에 수많은 요인들이 있기 때문에 극적인 사고율 변화는 없습니다.'")
 
