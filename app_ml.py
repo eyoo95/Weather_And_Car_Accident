@@ -4,14 +4,15 @@ import numpy as np
 import sklearn
 
 def run_ml():
-    st.subheader('자동차 구매 가능 가격 예측')
+    st.subheader('ML: 사고율 예측 인공지능')
+    st.info('아래에 기상정보를 입력하여 사고율을 예측하세요.')
     # 예측하기위해서 필요한 파일들을 불러와야 한다.
     # 인공지능파일과 스케일러 파일 2개
 
 
-    regressor = joblib.load('data/regressor.pkl')
-    scaler_X = joblib.load('data/scaler_X.pkl')
-    scaler_y = joblib.load('data/scaler_y.pkl')
+    regressor = joblib.load('data/regressor_car.pkl')
+    scaler_X = joblib.load('data/scaler_X_car.pkl')
+    scaler_y = joblib.load('data/scaler_y_car.pkl')
 
 
 # 사용자가 데이터 입력
