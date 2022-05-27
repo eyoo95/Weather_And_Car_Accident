@@ -194,3 +194,4 @@ def run_eda():
         if selected == radio_menu[1]:
             st.dataframe(df.describe())
 
+
