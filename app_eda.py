@@ -88,7 +88,7 @@ def run_eda():
                         x = df.groupby('date')[[selected_list_for_chart]].sum().index
                         y = df.groupby('date')[[selected_list_for_chart]].sum()
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45, fontsize=4 )
                         plt.plot(x,y)
                         st.pyplot(fig)
@@ -101,7 +101,7 @@ def run_eda():
                         x = df.groupby('date')[[selected_list_for_chart]].mean().index
                         y = df.groupby('date')[[selected_list_for_chart]].mean()
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45, fontsize=4 )
                         plt.plot(x,y)
                         st.pyplot(fig)
@@ -118,7 +118,7 @@ def run_eda():
                         x = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].sum().index
                         y = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].sum()
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45 )
                         plt.plot(x,y)
                         st.pyplot(fig)
@@ -131,7 +131,7 @@ def run_eda():
                         x = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean().index
                         y = df.loc[df['date'].str.contains(get_year),].groupby('date')[[selected_list_for_chart]].mean()
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45 )
                         plt.plot(x,y)
                         st.pyplot(fig)
@@ -149,7 +149,7 @@ def run_eda():
                         x = df.loc[df['시도별'].str.contains(get_region),]['date']
                         y = df.loc[df['시도별'].str.contains(get_region),][selected_list_for_chart]
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45, fontsize=4)
                         plt.plot(x,y)
                         st.pyplot(fig)
@@ -168,7 +168,7 @@ def run_eda():
                         x = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),]['date']
                         y = df.loc[(df['date'].str.contains(get_year))&(df['시도별'].str.contains(get_region)),][selected_list_for_chart]
                         plt.xlabel('Date')
-                        plt.ylabel(selected_list_for_chart)
+                        plt.ylabel('Selected Column')
                         plt.xticks(rotation = 45 )
                         plt.plot(x,y)
                         st.pyplot(fig)
