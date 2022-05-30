@@ -20,7 +20,7 @@ def run_ml():
 # 풍속, 기온 , 강수량, 습도
 
     windspeed = st.number_input('풍속을 입력하세요(m/s)',0,120)
-    temperature = st.number_input('온도를 입력하세요(℃)',-30,70)
+    temperature = st.number_input('온도를 입력하세요(℃)',-30,70,0)
     precipitation = st.number_input('강수량을 입력하세요(mm)',0,3000)
     humidity = st.number_input('습도를 입력하세요(%)',0,100)
 
