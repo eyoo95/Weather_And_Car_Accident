@@ -48,12 +48,14 @@ def run_eda():
                 fig = sb.pairplot(data = df[selected_list])
                 st.pyplot(fig)
                 st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
+                st.write("""***""")
 
             if select_corr == radio_corr[1]:
 
                 st.text('선택한 컬럼들의 상관계수입니다.')
                 st.dataframe(df_choice.corr())
                 st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
+                st.write("""***""")
             
             if select_corr == radio_corr[2]:
 
@@ -62,6 +64,7 @@ def run_eda():
                 sb.heatmap(data= df[selected_list].corr(),annot=True,fmt='.2f', vmin=-1, vmax=1, cmap='coolwarm',linewidths= 0.5)
                 st.pyplot(fig2)
                 st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
+                st.write("""***""")
 
 
 
@@ -193,5 +196,8 @@ def run_eda():
 
         if selected == radio_menu[1]:
             st.dataframe(df.describe())
+    st.write("""***""")
+    if st.button('데이터 분석 의견'):
+        st.info('기상통계를 보시면 평균 기온과 상대습도가 점차적으로 올라가는 경향을 보입니다.\n\n이는 대한민국의 기후가 아열대 기후로 변한다는 사실을 뒷받침하고 있습니다.\n\n다음으로 교통통계와 인구통계를 보면 사고건수와 사망자수, 그리고 부상자수가 전체적으로 줄어드는 모습을 볼수 있습니다.\n\n하지만 이를 긍정적인 결과로만으로 볼수 없습니다.\n\n그 이유로는 전체적인 인구수가 점차적으로 줄어들고 있기 때문입니다.\n\n따라서 대한민국은 아열대기후로 변하는 기상현상과 계속해서 줄어드는 인구수에 대한 대책 마련이 시급합니다.')
 
 
