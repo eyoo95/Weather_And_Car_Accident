@@ -27,7 +27,7 @@ def run_ml():
     if st.button('사고율 예측'): 
 
 
-        # 1. 신규고객의 정보를 넘파이 어레이로 만들어준다.
+        # 1. 정보를 넘파이 어레이로 만들어준다.
         new_data = np.array([windspeed, temperature, precipitation, humidity])
 
         # 2. 학습할때 사용한 X의 피텨스케일링을 이용해서 피처스케일링 한다.
