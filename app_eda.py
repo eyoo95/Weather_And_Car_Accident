@@ -65,7 +65,7 @@ def run_eda():
         st.text('')
 
         radio_menu = ['데이터프레임','통계치']
-        selected = st.radio('보고 싶은 데이터프레임을 선택하세요.', radio_menu)
+        selected = st.radio('보고 싶은 데이터를 선택하세요.', radio_menu)
 
         if selected == radio_menu[0]:
             
