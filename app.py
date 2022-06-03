@@ -8,7 +8,7 @@ def main():
     st.set_page_config(
      page_title="기상정보로 사고율 예측",
      page_icon="🌦️",
-     layout="wide",
+    #  layout="wide",
      initial_sidebar_state="expanded",
      menu_items={
          'Get Help': 'https://github.com/eyoo95/Streamlit_obesity',
