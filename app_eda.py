@@ -43,21 +43,22 @@ def run_eda():
             st.text('')
             st.text('선택한 컬럼들의 상관계수입니다.')
 
-            if select_corr == radio_corr[0]:               
+            if select_corr == radio_corr[0]:
                 fig = sb.pairplot(data = df[selected_list])
                 st.pyplot(fig)
-
-            if select_corr == radio_corr[1]:     
+                
+            if select_corr == radio_corr[1]:
                 st.dataframe(df_choice.corr())
-            
-            if select_corr == radio_corr[2]:  
+                
+            if select_corr == radio_corr[2]:
                 fig2 = plt.figure()
                 sb.heatmap(data= df[selected_list].corr(),annot=True,fmt='.2f', vmin=-1, vmax=1, cmap='coolwarm',linewidths= 0.5)
                 st.pyplot(fig2)
-
+                
             st.warning('위쪽의 상관관계 확인 체크박스를 풀어서 상관관계 표를 해제할수 있습니다.')
             st.write("""***""")
-            if select_corr == radio_corr[0]:
+
+
 
     # 라디오 버튼을 이용하여 데이터프레임과 통계치를 선택해서 볼수있게 한다.
     if st.checkbox('데이터프레임과 차트 생성'):
