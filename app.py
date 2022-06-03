@@ -11,8 +11,8 @@ def main():
      layout="wide",
      initial_sidebar_state="expanded",
      menu_items={
-         'Visit Github': 'https://github.com/eyoo95/Weather_And_Car_Accident',
-         'Visit blog': "https://startcod.tistory.com/",
+         'Get Help': 'https://github.com/eyoo95/Streamlit_obesity',
+         'Report a bug': 'https://startcod.tistory.com/',
      })
     st.title('기상정보를 통한 교통사고율 예측 앱')
     with st.sidebar:
