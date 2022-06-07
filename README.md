@@ -18,7 +18,7 @@
 2016년 부터 2020년까지의 대한민국의 기상상황과 교통사고 데이터를 지역과 날짜(년,월)를 기준으로 정리하여 인공지능을 학습시켰습니다. 
 
 >Dataset:
-
+>
 >KOSIS (대한민국 교통통계 및 기상통계)
 >>https://kosis.kr/statHtml/statHtml.do?orgId=132&tblId=DT_V_MOTA_016
 
