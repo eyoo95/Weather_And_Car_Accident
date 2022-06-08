@@ -79,7 +79,7 @@ pip install numpy
 ```
 
 *인공지능은 Random Forest를 사용했습니다.
->정확도: 0.7136217880179686
+>MSE(Mean Squared Error): 0.7136217880179686
 
 ----
 
