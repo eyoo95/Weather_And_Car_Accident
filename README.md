@@ -47,8 +47,10 @@ KOSIS (대한민국 교통통계 및 기상통계)
 - pandas
 - seaborn
 - matplotlib.pyplot
+- joblib
+- numpy
 
-인공지능은 Random Forest를 사용했습니다.
+*인공지능은 Random Forest를 사용했습니다.
 
 ----
 
