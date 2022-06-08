@@ -51,10 +51,15 @@ KOSIS (대한민국 교통통계 및 기상통계)
 - streamlit_option_menu
 >pip install streamlit_option_menu
 - pandas
+>pip install pandas
 - seaborn
+>pip install seaborn
 - matplotlib.pyplot
+> pip install matplotlib
 - joblib
+>pip install joblib
 - numpy
+>pip install numpy
 
 *인공지능은 Random Forest를 사용했습니다.
 
