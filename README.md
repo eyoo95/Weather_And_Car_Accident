@@ -29,8 +29,7 @@
 *교통사고는 기상상황 외에 수많은 요인들이 있기 때문에 사고율과 기상상황과의 상관관계지수는 낮습니다.
 
 *도로교통사고사망률 = (도로교통사고사망자수 ÷ 총인구) × 100,000
-
-(https://www.index.go.kr/unify/idx-info.do?idxCd=4261)
+>https://www.index.go.kr/unify/idx-info.do?idxCd=4261
 
 >주소:
 >
