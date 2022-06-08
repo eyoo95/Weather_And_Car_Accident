@@ -3,6 +3,10 @@
 
 이 앱은 교통사고 통계와 기상청의 종관기상 통계를 학습하여 날씨를 입력받으면 교통사고율을 예측할수 있는 앱입니다.
 
+앱 
+----
+http://ec2-52-79-80-210.ap-northeast-2.compute.amazonaws.com:8501/
+
 메뉴구성
 ----
 메뉴는 Home, EDA, ML로 구성되어 있습니다:
@@ -71,6 +75,3 @@ KOSIS (대한민국 교통통계 및 기상통계)
 
 *도로교통사고사망률 수식출처:
 >https://www.index.go.kr/unify/idx-info.do?idxCd=4261
-
-- 앱 주소:
->http://ec2-52-79-80-210.ap-northeast-2.compute.amazonaws.com:8501/
