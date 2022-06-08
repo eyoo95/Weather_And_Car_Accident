@@ -66,6 +66,7 @@ KOSIS (대한민국 교통통계 및 기상통계)
 >pip install numpy
 
 *인공지능은 Random Forest를 사용했습니다.
+>정확도: 0.7136217880179686
 
 ----
 
