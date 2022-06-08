@@ -54,17 +54,29 @@ pip install streamlit
 streamlit hello
 ```
 - streamlit_option_menu
->pip install streamlit_option_menu
+``` python
+pip install streamlit_option_menu
+```
 - pandas
->pip install pandas
+``` python
+pip install streamlit_option_menu
+```
 - seaborn
->pip install seaborn
-- matplotlib.pyplot
-> pip install matplotlib
+``` python
+pip install seaborn
+```
+- matplotlib
+``` python
+pip install matplotlib
+```
 - joblib
->pip install joblib
+``` python
+pip install joblib
+```
 - numpy
->pip install numpy
+``` python
+pip install numpy
+```
 
 *인공지능은 Random Forest를 사용했습니다.
 >정확도: 0.7136217880179686
