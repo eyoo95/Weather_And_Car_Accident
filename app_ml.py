@@ -1,7 +1,6 @@
 import streamlit as st
 import joblib
 import numpy as np
-import sklearn
 
 def run_ml():
     st.subheader('ML: 사고율 예측 인공지능')
