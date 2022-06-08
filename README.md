@@ -29,4 +29,4 @@
 
 >주소:
 >
->ec2-52-79-80-210:8501.ap-northeast-2.compute.amazonaws.com:8501
+>http://ec2-52-79-80-210.ap-northeast-2.compute.amazonaws.com:8501/
