@@ -45,6 +45,9 @@ KOSIS (대한민국 교통통계 및 기상통계)
 사용된 라이브러리
 ----
 - streamlit
+>pip install streamlit
+>
+>streamlit hello
 - streamlit_option_menu
 >pip install streamlit_option_menu
 - pandas
