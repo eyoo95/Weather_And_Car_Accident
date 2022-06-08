@@ -31,6 +31,6 @@
 *도로교통사고사망률 = (도로교통사고사망자수 ÷ 총인구) × 100,000
 >https://www.index.go.kr/unify/idx-info.do?idxCd=4261
 
->주소:
+>앱 주소:
 >
 >http://ec2-52-79-80-210.ap-northeast-2.compute.amazonaws.com:8501/
