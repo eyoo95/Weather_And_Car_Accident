@@ -46,7 +46,7 @@ KOSIS (대한민국 교통통계 및 기상통계)
 ----
 - streamlit
 - streamlit_option_menu
-->pip install streamlit_option_menu
+ >pip install streamlit_option_menu
 - pandas
 - seaborn
 - matplotlib.pyplot
