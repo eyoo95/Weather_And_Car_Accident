@@ -51,7 +51,6 @@ KOSIS (대한민국 교통통계 및 기상통계)
 - streamlit
 ``` python
 pip install streamlit
-streamlit hello
 ```
 - streamlit_option_menu
 ``` python
