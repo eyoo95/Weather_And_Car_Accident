@@ -5,7 +5,7 @@
 
 앱주소
 ----
-~~http://ec2-43-201-29-138.ap-northeast-2.compute.amazonaws.com:8502~~   
+~~http://ec2-43-201-29-138.ap-northeast-2.compute.amazonaws.com:8502 (OCI로 전환완료)~~   
 http://www.esyoo.site:8502/
 
 메뉴구성
